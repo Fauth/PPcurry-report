@@ -1,0 +1,25 @@
+<ac_voltage_source>
+    <type>ac_voltage_source</type>
+    <image>ac_voltage_source.png</image>
+    <name>Source de tension alternative</name>
+    <width>922</width>
+    <height>922</height>
+    <anchors>
+        <anchor>
+            <posX>0</posX>
+            <posY>460</posY>
+        </anchor>
+        <anchor>
+            <posX>921</posX>
+            <posY>460</posY>
+        </anchor>
+    </anchors>
+    <attributes>
+        <attribute>
+            <name>Amplitude</name>
+        </attribute>
+        <attribute>
+            <name>Fréquence</name>
+        </attribute>
+    </attributes>
+</ac_voltage_source>

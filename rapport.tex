@@ -1,9 +1,10 @@
-\documentclass[a4paper]{report}
+% !TeX TS-program = luatex
+
+\documentclass[french,a4paper]{report}
 
 %====================== PACKAGES ======================
 
-\usepackage[french]{babel}
-\usepackage[utf8]{inputenc}
+\usepackage{babel}
 \usepackage{graphicx} % Pour les images
 \usepackage{float} % Pour gérer les positionnement d'images
 \usepackage{amsmath} % Pour des équations plus jolies
@@ -27,12 +28,12 @@
 \usepackage{enumitem}
 \usepackage{wasysym}
 \usepackage{eurosym} % Pour le symbole euro
-\usepackage{textcomp}
 \usepackage[toc,nonumberlist,nopostdot]{glossaries} % Pour faire un glossaire
 \usepackage{lmodern}
 \usepackage{csquotes} % Pour les guillemets
 \usepackage{fontspec}
-\setmainfont{Times} % Police
+\usepackage{newtxtext}
+\usepackage{newtxmath}
 \usepackage{color} % Pour définir des couleurs personnalisées
 \usepackage{listings} % Pour insérer du code
 \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
@@ -50,6 +51,19 @@
 	stringstyle=\color{redstrings},
 	tabsize=4,
 	basicstyle=\ttfamily
+}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\lstdefinelanguage{XML}
+{
+	morestring=[b]",
+	morestring=[s]{>}{<},
+	morecomment=[s]{<?}{?>},
+	stringstyle=\color{black},
+	identifierstyle=\color{darkblue},
+	keywordstyle=\color{cyan},
+	morekeywords={xmlns,version}
 }
 \lstset{literate= % Pour que listings gère l'UTF-8
 	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
@@ -106,7 +120,11 @@ pdfstartview={FitH}}					 % Ajuste la page à la largueur de l'écran
 
 \input{cdc.tex}
 
-%\input{implementation.tex}
+\input{front-end.tex}
+
+\input{back-end.tex}
+
+\input{code_source.tex}
 
 %\newpage
 %\input{conclusion.tex}
