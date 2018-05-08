@@ -1,5 +1,5 @@
 % !TeX root = ./rapport.tex
-\chapter{Implémentation : front-end}
+\chapter{Implémentation : manipulation et affichage du circuit (front-end)}
 
 \paragraph{}Afin de représenter un circuit, nous avons défini les classes suivantes : \lstinline|BoardGrid| représente le \enquote{plateau} sur lequel est placé le circuit, \lstinline|Node| représente les nœuds de la grille du plateau, auxquels on peut connecter des éléments, \lstinline|Component| représente un composant du circuit (résistance, source de courant, etc.), \lstinline|Wire| représente un fil reliant deux nœuds. Enfin, la classe contenant la fonction \lstinline|main()| est \lstinline|MainWindow|. Il s'agit de la classe représentant la fenêtre et gérant les entrées claviers et les boutons. Son code est divisé en deux parties : une partie en XAML décrit la partie statique du code (division de l'interface, boutons), une autre en C\# gère les évènements et l'initialisation du circuit.
 
@@ -43,4 +43,8 @@
 
 \paragraph{}Les fils sont des composants qui relient deux nœuds. Ils ne peuvent pas être déplacés individuellement, mais si un composant connecté à un film est déplacé, le fil le suivra. Afin de gérer ces déplacements, à chaque fois une instance de la classe \lstinline|WireDragger| est créée. Cette classe permet de gérer le déplacement du fil, lequel nécessite de définir est composé d'un bout fixe et d'un bout mobile qui suit la souris et se connecte à chaque mouvement au nœud le plus proche du pointeur.
 
-\paragraph{}
+\section{La classe \lstinline|SavedCircuit|}
+
+\paragraph{}Afin de sauvegarder un circuit, nous utilisons le principe de la sérialisation, qui consiste à encoder une classe et tous ses attributs sous forme d'informations atomiques faciles à sauvegarder et à restaurer. C\# propose des outils permettant de réaliser cela très facilement. Il aurait été ainsi suffisant de sauvegarder l'instance de \lstinline|BoardGrid|, qui contient en attribut des pointeurs vers toutes les autres instances représentant le circuit, si cela avait été possible. En effet, un certain nombre des classes que nous utilisons héritent de classes définies par WPF qui, pour des raisons techniques, ne permettent pas la sérialisation. 
+
+\paragraph{}Nous avons donc implémenté la classe \lstinline|SavedCircuit|, dont une instance est créée lorsque l'on désire sauvegarder le circuit. Cette instance va lister tous les composants, fils et nœuds du circuit : ces informations suffisent à le décrire parfaitement. Ensuite, l'instance de \lstinline|SavedCircuit| est sérialisée. Pour charger un circuit, il suffit de la désérialiser, puis de créer une nouvelle instance de \lstinline|BoardGrid| en lui donnant l'ensemble des données sauvegardées.
